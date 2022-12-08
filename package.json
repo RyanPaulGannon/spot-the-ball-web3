@@ -8,13 +8,15 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "nuxt": "3.0.0-rc.11"
+    "nuxt": "^3.0.0-rc.14"
   },
   "dependencies": {
     "@web3uikit/core": "^0.1.11",
     "@web3uikit/icons": "^0.1.11",
     "@web3uikit/web3": "^0.1.9",
+    "ethers": "^5.7.2",
     "moralis": "^2.6.0",
-    "moralis-v1": "^1.11.0"
+    "moralis-v1": "^1.11.0",
+    "pinia": "^2.0.27"
   }
 }
