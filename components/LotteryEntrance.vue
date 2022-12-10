@@ -5,7 +5,6 @@ function enterLottery() {
     .request({ method: "eth_requestAccounts" })
     .then((accounts: any) => {
       account = accounts[0]
-      console.log(account)
     })
 }
 </script>
