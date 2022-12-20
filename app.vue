@@ -1,6 +1,4 @@
 <template>
-  <div>
-    <Header />
-    <LotteryEntrance />
-  </div>
+  <Header />
+  <LotteryEntrance />
 </template>
