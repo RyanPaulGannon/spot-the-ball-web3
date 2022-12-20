@@ -12,7 +12,6 @@
     "nuxt": "^3.0.0-rc.14"
   },
   "dependencies": {
-    "ethers": "^5.7.2",
-    "pinia": "^2.0.27"
+    "ethers": "^5.7.2"
   }
 }
