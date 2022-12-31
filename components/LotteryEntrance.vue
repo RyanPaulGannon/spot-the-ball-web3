@@ -3,6 +3,7 @@ import { ref } from "vue"
 import { ethers } from "ethers"
 
 import { abi, contractAddresses } from "~/constants"
+import { useWalletStore } from "~/stores/wallet"
 
 // const { chainId } = ethers.providers.getNetwork(5)
 // const lotteryAddress =
@@ -10,13 +11,11 @@ import { abi, contractAddresses } from "~/constants"
 // const recentWinner = ref("")
 // const entranceFee = ref("")
 // const numOfPlayers = ref("")
-let walletAddress = ref("")
+
+const wallet = useWalletStore()
 
 async function connectWallet() {
-  const provider = new ethers.providers.Web3Provider((window as any).ethereum)
-  await provider.send("eth_requestAccounts", [])
-  const signer = provider.getSigner()
-  walletAddress = await signer.getAddress()
+  wallet.getAddress()
 }
 
 function enterLottery() {}
@@ -32,8 +31,12 @@ function enterLottery() {}
       >
         Connect Wallet
       </button>
-      <br />
-      <p v-if="walletAddress" class="text-white">{{ walletAddress }}</p>
+      <br /><br />
+      <p v-if="wallet" class="text-white">
+        {{ wallet.address.slice(0, 6) }}...{{
+          wallet.account.slice(wallet.account.length - 4)
+        }}
+      </p>
       <br />
       <button
         class="rounded bg-white w-5/12 md:w-2/12 lg:w-1/12"
