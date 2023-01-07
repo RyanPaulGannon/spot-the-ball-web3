@@ -1,5 +1,5 @@
-# Nuxt Smart Contract Lottery
+# Nuxt Smart Contract Spot The Ball
 
 Following on from Patrick Collins' https://github.com/PatrickAlphaC/nextjs-smartcontract-lottery-fcc excellent tutorial!
 
-Attempted to replicate with Nuxt3 & Vue!
+Attempting to replicate this lottery with a version of Spot the Ball

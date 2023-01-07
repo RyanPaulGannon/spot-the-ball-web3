@@ -18,7 +18,7 @@ async function connectWallet() {
   wallet.getAddress()
 }
 
-function enterLottery() {}
+function enterSTB() {}
 </script>
 
 <template>
@@ -40,7 +40,7 @@ function enterLottery() {}
       <br />
       <button
         class="rounded bg-white w-5/12 md:w-2/12 lg:w-1/12"
-        @click="enterLottery"
+        @click="enterSTB"
       >
         Enter Lottery
       </button>
