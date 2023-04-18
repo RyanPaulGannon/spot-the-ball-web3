@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref } from "vue"
-import { ethers } from "ethers"
+import { ref } from 'vue'
+import { ethers } from 'ethers'
 
-import { abi, contractAddresses } from "~/constants"
-import { useWalletStore } from "~/stores/wallet"
+import { abi, contractAddresses } from '~/constants'
+import { useWalletStore } from '~/stores/wallet'
 
 // const { chainId } = ethers.providers.getNetwork(5)
 // const lotteryAddress =
@@ -17,6 +17,8 @@ const wallet = useWalletStore()
 async function connectWallet() {
   wallet.getAddress()
 }
+
+const balance = await wallet.updateBalance()
 
 function enterSTB() {}
 </script>
@@ -44,6 +46,9 @@ function enterSTB() {}
       >
         Enter Lottery
       </button>
+    </div>
+    <div>
+      <p class="text-white text-center">{{ balance.slice(0, 6) }}</p>
     </div>
     <div>
       <p class="text-white text-center">Previous Winners:</p>
