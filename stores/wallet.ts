@@ -21,6 +21,10 @@ export const useWalletStore = defineStore('wallet', {
       await provider.send('eth_requestAccounts', [])
       const signer = provider.getSigner()
       this.account = await signer.getAddress()
+
+      if (typeof sessionStorage !== 'undefined') {
+        sessionStorage.setItem('account', this.account.toString())
+      }
     },
     async updateBalance() {
       const provider = new ethers.providers.Web3Provider(
@@ -28,7 +32,25 @@ export const useWalletStore = defineStore('wallet', {
       )
       const signer = provider.getSigner()
       const balance = await signer.getBalance()
-      return (this.balance = ethers.utils.formatEther(balance))
+      this.balance = ethers.utils.formatEther(balance)
+
+      if (typeof sessionStorage !== 'undefined') {
+        sessionStorage.setItem('balance', this.balance.toString())
+      }
+    },
+    onInit() {
+      if (typeof sessionStorage !== 'undefined') {
+        const account = sessionStorage.getItem('account')
+        const balance = sessionStorage.getItem('balance')
+
+        if (account) {
+          this.account = account
+        }
+
+        if (balance) {
+          this.balance = balance
+        }
+      }
     },
   },
 })
