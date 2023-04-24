@@ -60,6 +60,7 @@ const cols = [
 
 <style>
 table {
+  margin-top: 5px;
   background-image: url('../stb.png');
 }
 td:hover {
@@ -77,7 +78,7 @@ td:active {
 
 @media (min-width: 641px) {
   table {
-    width: 50%;
+    width: 60%;
   }
 }
 </style>

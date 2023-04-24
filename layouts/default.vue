@@ -17,6 +17,8 @@
 
 <style>
 .layout {
+  margin: 0;
+  padding: 0;
   height: 100vh;
   max-height: 100vh;
   height: 100svh;

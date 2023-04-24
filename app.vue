@@ -1,5 +1,5 @@
 <template>
-  <NuxtPage />
+  <NuxtPage align="center" />
 </template>
 
 <style>
