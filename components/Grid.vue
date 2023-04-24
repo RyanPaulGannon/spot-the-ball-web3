@@ -1,8 +1,15 @@
 <template>
-  <table>
+  <table
+    height="400px"
+    width="50%"
+    cursor="pointer"
+    border="1.5 blue-900 solid collapse"
+  >
     <tbody>
       <tr v-for="row in rows" :key="row.id">
-        <td v-for="col in cols" :key="col.id">{{ row.cells[col.id] }}</td>
+        <td border="3 blue-500 solid" v-for="col in cols" :key="col.id">
+          {{ row.cells[col.id] }}
+        </td>
       </tr>
     </tbody>
   </table>
@@ -54,13 +61,11 @@ const cols = [
 <style>
 table {
   background-image: url('../stb.png');
-  height: 400px;
-  width: 50%;
-}
-table td {
-  border: 1.5px solid blue;
 }
 td:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+td:active {
   background-color: rgba(255, 255, 255, 0.5);
 }
 

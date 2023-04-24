@@ -6,8 +6,6 @@ import presetAttributify from '@unocss/preset-attributify'
 export default defineConfig({
   presets: [presetUno(), presetIcons(), presetAttributify()],
   shortcuts: {
-    header:
-      'bg-green-400 h-10 text-center border-b-2 border-b-slate-500 text-white',
     h1: 'text-slate-800 pt-1.5',
     h2: 'text-white text-center pt-2',
     btn: 'rounded bg-white w-5/12 md:w-2/12 lg:w-1/12',
