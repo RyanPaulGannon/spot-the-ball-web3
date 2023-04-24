@@ -1,16 +1,12 @@
 <template>
-  <div class="app">
-    <div class="header">
-      <Header />
-    </div>
-    <div class="grid">
-      <Grid />
-    </div>
-    <LotteryEntrance />
-  </div>
+  <NuxtPage />
 </template>
 
 <style>
+body {
+  margin: 0;
+  padding: 0;
+}
 .grid {
   text-align: center;
   margin: 10px;

@@ -16,14 +16,14 @@ if (typeof window !== 'undefined' && sessionStorage.getItem('account')) {
 </script>
 
 <template>
-  <div class="bg-black h-screen">
-    <h2 class="text-white text-center pt-2">Welcome to the lottery!</h2>
-    <div class="text-center p-4">
+  <div class="main">
+    <h2 class="h2">Welcome to the lottery!</h2>
+    <div class="sub">
       <button class="btn" @click="connectWallet">
         {{ wallet.address ? 'Connected' : 'Connect Wallet' }}
       </button>
       <br /><br />
-      <p v-if="wallet.address" class="text-white">
+      <p v-if="wallet.address" class="p">
         {{ wallet.address.slice(0, 6) }}...{{
           wallet.account.slice(wallet.account.length - 4)
         }}
@@ -32,10 +32,10 @@ if (typeof window !== 'undefined' && sessionStorage.getItem('account')) {
       <button class="btn">Enter Lottery</button>
     </div>
     <div>
-      <p class="text-white text-center">Balance</p>
+      <p class="p">Balance</p>
     </div>
     <div>
-      <p class="text-white text-center">Previous Winners:</p>
+      <p class="p">Previous Winners:</p>
     </div>
   </div>
 </template>

@@ -53,7 +53,7 @@ const cols = [
 
 <style>
 table {
-  background-image: url('../public/stb.png');
+  background-image: url('../stb.png');
   height: 400px;
   width: 50%;
 }
