@@ -12,6 +12,7 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
     "@unocss/nuxt": "^0.51.8",
     "@unocss/preset-attributify": "^0.51.8",
     "@unocss/preset-icons": "^0.51.8",
@@ -21,6 +22,7 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.6",
-    "pinia": "^2.0.28"
+    "pinia": "^2.0.28",
+    "wagmi": "^0.12.12"
   }
 }
