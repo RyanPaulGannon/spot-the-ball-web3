@@ -13,16 +13,16 @@
   },
   "devDependencies": {
     "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
-    "@unocss/nuxt": "^0.51.8",
-    "@unocss/preset-attributify": "^0.51.8",
-    "@unocss/preset-icons": "^0.51.8",
-    "@unocss/preset-uno": "^0.51.8",
+    "@unocss/nuxt": "^0.51.13",
+    "@unocss/preset-attributify": "^0.51.13",
+    "@unocss/preset-icons": "^0.51.13",
+    "@unocss/preset-uno": "^0.51.13",
     "ethers": "^5.7.2",
     "nuxt": "3.4.2"
   },
   "dependencies": {
-    "@pinia/nuxt": "^0.4.6",
-    "pinia": "^2.0.28",
-    "wagmi": "^0.12.12"
+    "@pinia/nuxt": "^0.4.11",
+    "pinia": "^2.1.4",
+    "wagmi": "^0.12.19"
   }
 }

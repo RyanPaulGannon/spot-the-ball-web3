@@ -1,43 +1,43 @@
 <script setup lang="ts">
+import { connect } from '@wagmi/core'
 import { useWalletStore } from '~/stores/wallet'
+import { optimism, polygon } from '@wagmi/core/chains'
+import { publicProvider } from '@wagmi/core/providers/public'
+import { MetaMaskConnector } from '@wagmi/core/connectors/metaMask'
+import { createClient, configureChains, mainnet } from '@wagmi/core'
+
+const { provider, webSocketProvider } = configureChains(
+  [mainnet],
+  [publicProvider()]
+)
+
+const client = createClient({
+  autoConnect: true,
+  provider,
+  webSocketProvider,
+  connectors: [new MetaMaskConnector()],
+})
 
 const wallet = useWalletStore()
+const connectors = useConnectors()
 
-async function connectWallet() {
-  await wallet.getAddress()
-  if (typeof window !== 'undefined') {
-    sessionStorage.setItem('account', wallet.address.toString())
-  }
-}
-
-if (typeof window !== 'undefined' && sessionStorage.getItem('account')) {
-  wallet.account = sessionStorage.getItem('account')!
+async function connectWallet(connectorName: keyof typeof connectors) {
+  const connector = connectors[connectorName]
+  await connect({ connector })
 }
 </script>
 
 <template>
-  <div bg="black" align="center">
-    <h2 text="white center">Welcome to the lottery!</h2>
-    <div>
-      <button class="btn" @click="connectWallet">
-        {{ wallet.address ? 'Connected' : 'Connect Wallet' }}
-      </button>
-      <div>
-        <p v-if="wallet.address" class="p">
-          {{ wallet.address.slice(0, 6) }}...{{
-            wallet.account.slice(wallet.account.length - 4)
-          }}
-        </p>
-      </div>
-      <div>
-        <button class="btn">Enter Lottery</button>
-      </div>
-      <div>
-        <p class="p">Balance</p>
-      </div>
-      <div>
-        <p class="p">Previous Winners:</p>
-      </div>
-    </div>
+  <h2 text="white center">Welcome to the lottery!</h2>
+  <div>
+    <button class="btn" cursor="pointer" @click="connectWallet('metamask')">
+      Enter Lottery
+    </button>
+  </div>
+  <div>
+    <p class="p">Balance</p>
+  </div>
+  <div>
+    <p class="p">Previous Winners:</p>
   </div>
 </template>

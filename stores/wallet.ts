@@ -1,56 +1,64 @@
+import type {
+  GetAccountResult,
+  GetNetworkResult,
+  InjectedConnector,
+} from '@wagmi/core'
+import type { MetaMaskConnector } from '@wagmi/core/connectors/metaMask'
+import type { WalletConnectConnector } from '@wagmi/core/connectors/walletConnect'
 import { ethers } from 'ethers'
 import { defineStore } from 'pinia'
 
+type NetworkName = string
+
 export const useWalletStore = defineStore('wallet', {
   state: (): {
-    account: String
-    balance: String | Number | undefined
+    connector:
+      | MetaMaskConnector
+      | WalletConnectConnector
+      | InjectedConnector
+      | undefined
+    account: GetAccountResult | undefined
+    network: GetNetworkResult | undefined
+    balance: String | undefined
   } => {
-    return { account: '', balance: 0 }
+    return {
+      connector: undefined,
+      account: undefined,
+      network: undefined,
+      balance: undefined,
+    }
   },
   getters: {
+    connected(state) {
+      return !!state.account?.address
+    },
     address(state) {
-      return state.account
+      return state.account?.address
+    },
+    networkName(state) {
+      return state.network?.chain?.network as NetworkName | undefined
+    },
+    networkLabel(state) {
+      return state.network?.chain?.name
     },
   },
   actions: {
-    async getAddress() {
-      const provider = new ethers.providers.Web3Provider(
-        (window as any).ethereum
-      )
-      await provider.send('eth_requestAccounts', [])
-      const signer = provider.getSigner()
-      this.account = await signer.getAddress()
-
-      if (typeof sessionStorage !== 'undefined') {
-        sessionStorage.setItem('account', this.account.toString())
-      }
-    },
     async updateBalance() {
-      const provider = new ethers.providers.Web3Provider(
-        (window as any).ethereum
-      )
-      const signer = provider.getSigner()
-      const balance = await signer.getBalance()
-      this.balance = ethers.utils.formatEther(balance)
-
-      if (typeof sessionStorage !== 'undefined') {
-        sessionStorage.setItem('balance', this.balance.toString())
+      try {
+        const provider = useWeb3Provider()
+        const signer = (await provider).web3Signer
+        const balance = await signer.getBalance()
+        this.balance = ethers.utils.formatEther(balance)
+      } catch (error) {
+        console.log(
+          'Could not retrieve balance from wallet. This might happen if it is not connected.'
+        )
+        this.balance = undefined
       }
-    },
-    onInit() {
-      if (typeof sessionStorage !== 'undefined') {
-        const account = sessionStorage.getItem('account')
-        const balance = sessionStorage.getItem('balance')
-
-        if (account) {
-          this.account = account
-        }
-
-        if (balance) {
-          this.balance = balance
-        }
-      }
+      return this.balance
     },
   },
+  //   persist: {
+  //     paths: [],
+  //   },
 })

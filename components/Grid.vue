@@ -61,7 +61,7 @@ const cols = [
 <style>
 table {
   margin-top: 5px;
-  background-image: url('../stb.png');
+  background-image: url('../assets/stb.png');
 }
 td:hover {
   background-color: rgba(255, 255, 255, 0.5);
